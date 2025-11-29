@@ -1,0 +1,352 @@
+/* styles.css */
+:root {
+    --space-bg: #000000;
+    --star-color: #ffffff;
+    --orbit-color: rgba(255, 255, 255, 0.1);
+    --panel-bg: rgba(15, 23, 42, 0.95);
+    --text-main: #f1f5f9;
+    --text-muted: #cbd5e1;
+    --accent-glow: rgba(56, 189, 248, 0.6);
+    --font-main: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--space-bg);
+    font-family: var(--font-main);
+    color: var(--text-main);
+}
+
+/* Starfield Background */
+#universe {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    perspective: 1200px;
+    /* Increased perspective for better 3D effect */
+    overflow: hidden;
+    background: radial-gradient(ellipse at bottom, #0f172a 0%, #000000 100%);
+}
+
+#stars {
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    box-shadow: 1744px 122px #FFF, 134px 1321px #FFF, 92px 859px #FFF, 1843px 325px #FFF, 1345px 123px #FFF, 234px 983px #FFF, 923px 432px #FFF, 1234px 876px #FFF, 456px 234px #FFF, 876px 123px #FFF, 123px 654px #FFF, 1654px 345px #FFF, 876px 1543px #FFF, 345px 876px #FFF, 1543px 234px #FFF, 654px 123px #FFF, 234px 1654px #FFF, 123px 456px #FFF, 1876px 876px #FFF, 543px 1234px #FFF;
+    animation: animStar 50s linear infinite;
+}
+
+#stars:after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    box-shadow: 1744px 122px #FFF, 134px 1321px #FFF, 92px 859px #FFF, 1843px 325px #FFF, 1345px 123px #FFF, 234px 983px #FFF, 923px 432px #FFF, 1234px 876px #FFF, 456px 234px #FFF, 876px 123px #FFF, 123px 654px #FFF, 1654px 345px #FFF, 876px 1543px #FFF, 345px 876px #FFF, 1543px 234px #FFF, 654px 123px #FFF, 234px 1654px #FFF, 123px 456px #FFF, 1876px 876px #FFF, 543px 1234px #FFF;
+}
+
+@keyframes animStar {
+    from {
+        transform: translateY(0px);
+    }
+
+    to {
+        transform: translateY(-2000px);
+    }
+}
+
+/* Scene Container */
+#scene {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Central Star */
+#center-star-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    transform-style: preserve-3d;
+    /* Ensure it stays in the center of the 3D space */
+    transform: translateZ(0);
+}
+
+#profile-star {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 60px rgba(56, 189, 248, 0.4), 0 0 30px rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    position: relative;
+    z-index: 2;
+    background: #000;
+}
+
+#profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#profile-info {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+#name {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 2px 4px rgba(0, 0, 0, 1);
+    letter-spacing: 1px;
+}
+
+#subtitle {
+    font-size: 1.1rem;
+    color: #cbd5e1;
+    max-width: 400px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    font-weight: 400;
+}
+
+#uni-text {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Orbit System - The Tilted Ring */
+#orbit-system {
+    position: absolute;
+    width: 800px;
+    /* Larger orbit */
+    height: 800px;
+    border-radius: 50%;
+    border: 1px solid var(--orbit-color);
+    transform-style: preserve-3d;
+    /* Tilted to create the ellipse effect */
+    transform: rotateX(75deg);
+    /* No CSS animation here, controlled by JS for interaction */
+}
+
+/* Planet Container - Positions the planet on the ring */
+.planet-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    margin-left: -40px;
+    margin-top: -40px;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    /* Transition for smooth movement if needed, but JS handles the main rotation */
+}
+
+/* The Planet Sphere */
+.planet {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
+    /* Counter-rotate to stand up straight against the orbit's tilt */
+    transform: rotateX(-75deg);
+    transform-style: preserve-3d;
+    box-shadow: inset -10px -10px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 255, 255, 0.2);
+    background-size: 200% 100%;
+    /* For the wrapping texture */
+    animation: planet-spin 20s linear infinite;
+    /* Self-rotation */
+}
+
+/* Self-rotation animation */
+@keyframes planet-spin {
+    from {
+        background-position: 0% center;
+    }
+
+    to {
+        background-position: -200% center;
+    }
+}
+
+/* Planet Label */
+.planet-label {
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%) rotateX(-75deg);
+    /* Counter-rotate to face camera */
+    width: 140px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    text-shadow: 0 2px 4px black;
+    pointer-events: none;
+    letter-spacing: 0.5px;
+    transition: opacity 0.3s;
+}
+
+/* Pop-up Panel */
+#panel-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+#panel-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#content-panel {
+    width: 90%;
+    max-width: 800px;
+    max-height: 85vh;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.05);
+    position: relative;
+    transform: scale(1);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+}
+
+#panel-overlay.hidden #content-panel {
+    transform: scale(0.9);
+}
+
+#close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+#close-btn:hover {
+    color: white;
+}
+
+#panel-content {
+    padding: 3rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+#panel-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+#panel-content::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+#panel-content h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+#panel-content h3 {
+    font-size: 1.4rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #38bdf8;
+}
+
+#panel-content p,
+#panel-content li {
+    line-height: 1.8;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.2s, transform 0.2s;
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #orbit-system {
+        width: 350px;
+        height: 350px;
+    }
+
+    #profile-star {
+        width: 120px;
+        height: 120px;
+    }
+
+    .planet-container {
+        width: 50px;
+        height: 50px;
+        margin-left: -25px;
+        margin-top: -25px;
+    }
+
+    #name {
+        font-size: 1.75rem;
+    }
+
+    #panel-content {
+        padding: 1.5rem;
+    }
+}
