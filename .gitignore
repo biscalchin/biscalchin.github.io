@@ -1,0 +1,14 @@
+# Local work notes, reports and screenshots — kept out of the published site
+work/
+
+# Editor / OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local preview / test artifacts (never deployed)
+node_modules/
+.playwright/
+playwright-report/
+test-results/
+*.log

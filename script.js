@@ -1,419 +1,374 @@
-// script.js
+/* Progressive enhancement only: the CV content is fully readable without JavaScript. */
+(function () {
+  "use strict";
 
-// Embedded content to avoid fetch issues on local file system
-const contentData = {
-    "researcher_profile": {
-        "name": "Alberto Biscalchin",
-        "affiliation": "Department of Technology and Society, Malmö University",
-        "address": "Neptuniplan 7, 205 06 Malmö, Sweden",
-        "contacts": {
-            "email_personal": "alberto.biscalchin@gmail.com",
-            "email_institutional": "alberto.biscalchin@mau.se",
-            "orcid": "0009-0005-1737-6754"
-        },
-        "education": [
-            { "year": 2025, "degree": "M.Sc. Applied Data Science", "institution": "Malmö University, Sweden" },
-            { "year": 2022, "degree": "B.Sc. Computer and Automation Engineering", "institution": "Università eCampus, Italy" },
-            { "year": 2019, "degree": "Executive Master, Digital Video Editing", "institution": "MyWeb School, Naples" },
-            { "year": 2010, "degree": "High School Diploma, Applied Sciences", "institution": "Giulio Natta Institute, Rivoli" }
-        ],
-        "skills": {
-            "programming": ["Python", "MATLAB", "SQL", "C", "C++", "Java", "PHP", "HTML"],
-            "tools": ["AutoCAD", "Inventor", "Adobe Suite", "Reaper"],
-            "languages": ["Italian (Native)", "English (C2)", "Spanish (B1)"]
-        }
-    },
+  var doc = document;
+  var root = doc.documentElement;
+  var body = doc.body;
 
-    "academic_positions": [
-        { "role": "Research Assistant", "institution": "Malmö University", "years": "2024–present" },
-        { "role": "Secondary School Teacher", "institution": "Istituto Juvarra", "years": "2022–2023" },
-        { "role": "Head Teacher", "institution": "Centro Studi Omnibus", "years": "2021–2023" }
-    ],
+  var motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    "teaching_experience": [
-        {
-            "subjects": ["Mathematics", "Physics", "Computer Science"],
-            "institution": "Istituto Juvarra & Centro Studi Omnibus",
-            "years": "2021–2023"
-        }
-    ],
+  /* ---------------------------------------------------------------- Reveals */
 
-    "professional_experience": [
-        { "role": "Full-stack Web Developer", "company": "GIGA srls", "years": "2018–2019" },
-        { "role": "Head of IT Department", "company": "Mondadori Mega Store", "years": "2014–2015" },
-        { "role": "Freelance Photographer/Videographer", "company": "-", "years": "2012–2018" },
-        { "role": "Customs Consultant", "company": "FCA", "years": "2011–2012" },
-        { "role": "Industrial Quality Control", "company": "Con.Top S.R.L.", "years": "2011" }
-    ],
+  var revealTargets = Array.prototype.slice.call(doc.querySelectorAll("[data-reveal]"));
 
-    "research_experience": {
-        "research_assistant_role": {
-            "summary": "Design and deployment of multi-agent LLM systems for mobility analysis and structured reporting.",
-            "STAR": {
-                "situation": "Need for scalable analytical pipelines for travel behaviour studies.",
-                "task": "Develop a modular multi-agent architecture for survey analytics and reporting.",
-                "action": [
-                    "Led development of preprocessing and contextual reasoning pipelines",
-                    "Designed JSON-governed multi-agent workflow",
-                    "Implemented reporting and validation agents"
-                ],
-                "result": "Framework adopted in international publications and active research projects."
-            }
-        },
-        "master_thesis": {
-            "title": "Multi-agent architecture for elderly mobility analysis",
-            "grade": "A",
-            "STAR": {
-                "situation": "Limited interpretability and scalability in elderly mobility modelling.",
-                "task": "Design a transparent multi-agent system for clustering, validation and interpretation.",
-                "action": [
-                    "Implemented agents for segmentation and expert comparison",
-                    "Created reproducible modelling framework"
-                ],
-                "result": "System now forms the basis of an ongoing journal manuscript."
-            }
-        },
-        "course_development": {
-            "project": "Exploratory Data Analysis (MATLAB → Python)",
-            "STAR": {
-                "situation": "Course limited by MATLAB licensing and accessibility issues.",
-                "task": "Migrate entire course to Python.",
-                "action": [
-                    "Rebuilt exercises and pipelines",
-                    "Developed complete open-source repository"
-                ],
-                "result": "Course now fully delivered in Python."
-            }
-        }
-    },
+  function revealAll() {
+    revealTargets.forEach(function (el) { el.classList.add("is-visible"); });
+  }
 
-    "publications": [
-        {
-            "type": "conference",
-            "title": "Designing Education for the AI Era: Principles for Integrating LLMs in Pedagogy",
-            "venue": "IEEE SoftCOM 2025",
-            "year": 2025,
-            "authors": ["Alberto Biscalchin", "Arezoo Sarkheyli-Hägele", "Jeanette Eriksson", "Bahtijar Vogel"],
-            "core_contributions": [
-                "Review of 98 sources on LLMs in education",
-                "Redefinition of student AI use as a design rather than misconduct problem",
-                "Proposal of principles for AI-integrated education"
-            ]
-        },
-        {
-            "type": "conference",
-            "title": "Multi-Agent Foundation Models for Urban Mobility: The Malmö Elderly Case",
-            "venue": "FLLM 2025",
-            "year": 2025,
-            "authors": ["Alberto Biscalchin", "Elnaz Sarkheyli", "Arezoo Sarkheyli-Hägele"],
-            "core_contributions": [
-                "Introduction of five-agent modular LLM pipeline",
-                "Application to Malmö elderly travel survey",
-                "Benchmark vs commercial LLM and human experts",
-                "Open-source release of full pipeline"
-            ]
-        },
-        {
-            "type": "journal_under_review",
-            "manuscript_id": "TBS-D-2025-01074",
-            "title": "The Applications of Large Language Models in Travel Behavior Studies: A Narrative Review",
-            "venue": "Travel Behaviour and Society",
-            "year": 2025,
-            "authors": ["Alberto Biscalchin", "Arezoo Sarkheyli-Hägele", "Elnaz Sarkheyli", "Jan A. Persson", "Shiva Habibi"],
-            "core_contributions": [
-                "Narrative review of 59 LLM and ML mobility studies",
-                "Five-class taxonomy of contextual factors",
-                "Comparison of CML, LLM, and hybrid systems",
-                "Identification of methodological blind spots and future directions"
-            ]
-        }
-    ],
-
-    "research_domains": {
-        "ai_in_education": {
-            "themes": [
-                "LLMs as intelligent interfaces",
-                "Task/assessment redesign",
-                "Cognitive development under AI mediation",
-                "Ethical and epistemological implications"
-            ]
-        },
-        "urban_mobility_llms": {
-            "themes": [
-                "Travel behaviour analysis",
-                "Multi-agent LLM architectures",
-                "Interpretability and expert comparison",
-                "Ageing population mobility"
-            ]
-        },
-        "contextual_reasoning": {
-            "themes": [
-                "Integration of heterogeneous contextual data",
-                "Limitations of current CML approaches",
-                "Generalizability and explainability challenges",
-                "Hybrid modelling with LLMs"
-            ]
-        }
+  function initReveals() {
+    if (motionQuery.matches || !("IntersectionObserver" in window)) {
+      revealAll();
+      return;
     }
-};
 
-// Global state for orbit
-let currentOrbitAngle = 0;
-let isAnimating = false;
-let isPaused = false;
-let animationFrameId;
-const ORBIT_SPEED = 0.05; // Degrees per frame for idle rotation
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    initScene(contentData);
-    startOrbitLoop();
-});
+    revealTargets.forEach(function (el) { observer.observe(el); });
 
-function initScene(data) {
-    const profile = data.researcher_profile;
-
-    // Setup Profile
-    document.getElementById('name').textContent = profile.name;
-    document.getElementById('subtitle').textContent = profile.affiliation;
-    document.getElementById('uni-text').textContent = "Malmö University";
-
-    // Setup Planets
-    const orbitSystem = document.getElementById('orbit-system');
-    const sections = [
-        { id: 'about', label: 'About', texture: 'img/texture_1.png' },
-        { id: 'research', label: 'Research', texture: 'img/texture_2.png' },
-        { id: 'publications', label: 'Publications', texture: 'img/texture_3.png' },
-        { id: 'teaching', label: 'Teaching', texture: 'img/texture_4.png' },
-        { id: 'contact', label: 'Contact', texture: 'img/texture_5.png' }
-    ];
-
-    const radius = orbitSystem.offsetWidth / 2;
-    const totalPlanets = sections.length;
-    const angleStep = 360 / totalPlanets;
-
-    sections.forEach((section, index) => {
-        const angle = index * angleStep;
-        const planetContainer = document.createElement('div');
-        planetContainer.className = 'planet-container';
-        planetContainer.dataset.angle = angle; // Store initial angle
-
-        // Position planet on the circle using transform
-        // We rotate the container to the correct angle, then translate out
-        planetContainer.style.transform = `rotateZ(${angle}deg) translateX(${radius}px)`;
-
-        const planet = document.createElement('div');
-        planet.className = 'planet';
-        planet.style.backgroundImage = `url('${section.texture}')`;
-
-        const label = document.createElement('div');
-        label.className = 'planet-label';
-        label.textContent = section.label;
-
-        planet.appendChild(label);
-        planetContainer.appendChild(planet);
-        orbitSystem.appendChild(planetContainer);
-
-        // Click Event
-        planetContainer.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (isAnimating) return;
-
-            // Calculate target angle to bring this planet to the front (90 degrees in our setup usually corresponds to "bottom/front" depending on rotation)
-            // Actually, in a standard CSS circle, 90deg is bottom. 
-            // We want the clicked planet to be at 90deg (front of the tilted ellipse).
-            // So we need to rotate the orbit system such that: (initialAngle + systemRotation) % 360 = 90
-            // systemRotation = 90 - initialAngle
-
-            const targetSystemAngle = 90 - angle;
-            rotateToAngle(targetSystemAngle, () => {
-                openPanel(section.id, data);
-            });
+    // Safety net: anything already inside the first viewport is revealed once loaded.
+    window.addEventListener("load", function () {
+      window.setTimeout(function () {
+        revealTargets.forEach(function (el) {
+          if (el.classList.contains("is-visible")) { return; }
+          var rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.95) { el.classList.add("is-visible"); }
         });
+      }, 250);
+    });
+  }
+
+  /* ----------------------------------------------------------------- Header */
+
+  var header = doc.getElementById("site-header");
+
+  /* ------------------------------------------------------- Language selector */
+
+  var i18n = window.SITE_I18N || null;
+  var DEFAULT_LOCALE = i18n && i18n.defaultLocale ? i18n.defaultLocale : "en";
+  var currentLocale = DEFAULT_LOCALE;
+
+  var langToggle = doc.getElementById("lang-toggle");
+  var langMenu = doc.getElementById("lang-menu");
+  var langOptions = langMenu ? Array.prototype.slice.call(langMenu.querySelectorAll("[data-locale]")) : [];
+
+  function dictFor(locale) {
+    return i18n && i18n.strings[locale] ? i18n.strings[locale] : null;
+  }
+
+  function tr(locale, key) {
+    var pack = dictFor(locale);
+    var value = pack ? pack[key] : undefined;
+    if (value === undefined) {
+      var fallback = dictFor(DEFAULT_LOCALE);
+      value = fallback ? fallback[key] : undefined;
+    }
+    return value;
+  }
+
+  function isSupportedLocale(locale) {
+    return !!i18n && !!locale && i18n.supported.indexOf(locale) !== -1;
+  }
+
+  function localeMeta(locale) {
+    if (i18n && i18n.locales && i18n.locales[locale]) { return i18n.locales[locale]; }
+    return { endonym: "English", htmlLang: "en", flag: "gb" };
+  }
+
+  /* Remember only an explicit choice; never guess from the browser locale. */
+  function readStoredLocale() {
+    try {
+      var stored = window.localStorage.getItem(i18n.storageKey);
+      return isSupportedLocale(stored) ? stored : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function writeStoredLocale(locale) {
+    try {
+      window.localStorage.setItem(i18n.storageKey, locale);
+    } catch (error) {
+      /* localStorage unavailable (private mode, blocked storage): ignore. */
+    }
+  }
+
+  function setMeta(attr, name, value) {
+    if (!value) { return; }
+    var el = doc.querySelector("meta[" + attr + '="' + name + '"]');
+    if (el) { el.setAttribute("content", value); }
+  }
+
+  function updateLangUI() {
+    var meta = localeMeta(currentLocale);
+    if (langToggle) {
+      var selectLabel = tr(currentLocale, "lang.select") || "Language";
+      langToggle.setAttribute("aria-label", selectLabel + ": " + meta.endonym);
+      var flag = langToggle.querySelector(".lang__flag");
+      if (flag) { flag.setAttribute("src", "assets/flags/" + meta.flag + ".svg"); }
+      var nameEl = langToggle.querySelector(".lang__name");
+      if (nameEl) { nameEl.textContent = meta.endonym; }
+    }
+    langOptions.forEach(function (option) {
+      option.setAttribute("aria-selected",
+        option.getAttribute("data-locale") === currentLocale ? "true" : "false");
+    });
+  }
+
+  function syncNavToggleLabel() {
+    if (!toggle) { return; }
+    var label = tr(currentLocale, panelIsOpen() ? "nav.toggleClose" : "nav.toggleOpen");
+    if (label) { toggle.setAttribute("aria-label", label); }
+  }
+
+  /* Applies only values coming from the local dictionary — never from URLs or
+     storage, so there is no injection surface. */
+  function applyLocale(locale) {
+    if (!i18n) { return; }
+    if (!isSupportedLocale(locale)) { locale = DEFAULT_LOCALE; }
+
+    Array.prototype.slice.call(doc.querySelectorAll("[data-i18n]")).forEach(function (el) {
+      var value = tr(locale, el.getAttribute("data-i18n"));
+      if (value !== undefined) { el.textContent = value; }
+    });
+    Array.prototype.slice.call(doc.querySelectorAll("[data-i18n-html]")).forEach(function (el) {
+      var value = tr(locale, el.getAttribute("data-i18n-html"));
+      if (value !== undefined) { el.innerHTML = value; }
+    });
+    Array.prototype.slice.call(doc.querySelectorAll("[data-i18n-aria-label]")).forEach(function (el) {
+      var value = tr(locale, el.getAttribute("data-i18n-aria-label"));
+      if (value !== undefined) { el.setAttribute("aria-label", value); }
+    });
+    Array.prototype.slice.call(doc.querySelectorAll("[data-i18n-alt]")).forEach(function (el) {
+      var value = tr(locale, el.getAttribute("data-i18n-alt"));
+      if (value !== undefined) { el.setAttribute("alt", value); }
     });
 
-    // Close Button
-    document.getElementById('close-btn').addEventListener('click', closePanel);
-    document.getElementById('panel-overlay').addEventListener('click', (e) => {
-        if (e.target.id === 'panel-overlay') closePanel();
+    currentLocale = locale;
+    root.setAttribute("lang", localeMeta(locale).htmlLang);
+    doc.title = tr(locale, "meta.title") || doc.title;
+    setMeta("name", "description", tr(locale, "meta.description"));
+    setMeta("property", "og:locale", tr(locale, "meta.ogLocale"));
+    setMeta("property", "og:title", tr(locale, "meta.ogTitle"));
+    setMeta("property", "og:description", tr(locale, "meta.ogDescription"));
+
+    updateLangUI();
+    syncNavToggleLabel();
+  }
+
+  function langOpen() {
+    return !!langMenu && langMenu.classList.contains("is-open");
+  }
+
+  function openLangMenu() {
+    if (!langMenu || !langToggle || langOpen()) { return; }
+    if (panelIsOpen()) { closeNav(false); }
+    langMenu.classList.add("is-open");
+    langToggle.setAttribute("aria-expanded", "true");
+    var selected = langOptions.filter(function (option) {
+      return option.getAttribute("data-locale") === currentLocale;
+    })[0] || langOptions[0];
+    window.requestAnimationFrame(function () {
+      if (langOpen() && selected) { selected.focus(); }
     });
-}
+  }
 
-function startOrbitLoop() {
-    function loop() {
-        if (!isPaused && !isAnimating) {
-            currentOrbitAngle += ORBIT_SPEED;
-            updateOrbitVisuals(currentOrbitAngle);
-        }
-        animationFrameId = requestAnimationFrame(loop);
+  function closeLangMenu(restoreFocus) {
+    if (!langOpen()) { return; }
+    langMenu.classList.remove("is-open");
+    if (langToggle) {
+      langToggle.setAttribute("aria-expanded", "false");
+      if (restoreFocus) { langToggle.focus(); }
     }
-    loop();
-}
+  }
 
-function updateOrbitVisuals(angle) {
-    const orbitSystem = document.getElementById('orbit-system');
-    orbitSystem.style.transform = `rotateX(75deg) rotateZ(${angle}deg)`;
+  function selectLocale(locale) {
+    if (!isSupportedLocale(locale)) { return; }
+    writeStoredLocale(locale);
+    applyLocale(locale);
+    closeLangMenu(false);
+    if (langToggle) { langToggle.focus(); }
+  }
 
-    // Update depth effects for each planet
-    const planets = document.querySelectorAll('.planet-container');
-    planets.forEach(p => {
-        const initialAngle = parseFloat(p.dataset.angle);
-        const totalAngle = (initialAngle + angle) % 360;
-        const rad = totalAngle * (Math.PI / 180);
+  function moveLangFocus(from, delta) {
+    var index = langOptions.indexOf(from);
+    if (index === -1) { index = 0; }
+    var next = (index + delta + langOptions.length) % langOptions.length;
+    langOptions[next].focus();
+  }
 
-        // Calculate Z-depth (sine of angle)
-        // In a circle starting at 0 (right), 90 is bottom (front), 270 is top (back).
-        // sin(90) = 1 (front), sin(270) = -1 (back).
-        const zDepth = Math.sin(rad);
+  function initLang() {
+    if (!langToggle || !langMenu || !langOptions.length) { return; }
 
-        // Scale and Brightness based on Z-depth
-        // Front (1): Scale 1.2, Brightness 1.2
-        // Back (-1): Scale 0.8, Brightness 0.5, Blur 2px
-
-        const scale = 0.8 + (0.4 * (zDepth + 1) / 2); // Map -1..1 to 0.8..1.2
-        const brightness = 0.5 + (0.7 * (zDepth + 1) / 2); // Map -1..1 to 0.5..1.2
-        const blur = zDepth < 0 ? (Math.abs(zDepth) * 3) : 0;
-        const zIndex = Math.floor((zDepth + 1) * 100); // 0 to 200
-
-        const planet = p.querySelector('.planet');
-        planet.style.filter = `brightness(${brightness}) blur(${blur}px)`;
-        p.style.zIndex = zIndex;
-
-        // We also need to counter-rotate the planet container's Z rotation so it stays upright?
-        // No, the planet container rotates WITH the system. 
-        // But the planet itself has rotateX(-75deg) to stand up.
-        // The label also has rotateX(-75deg).
-        // We might want to scale the container itself.
-        p.style.transform = `rotateZ(${initialAngle}deg) translateX(${orbitSystem.offsetWidth / 2}px) scale(${scale})`;
+    langToggle.addEventListener("click", function () {
+      if (langOpen()) { closeLangMenu(false); } else { openLangMenu(); }
     });
-}
+    langToggle.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+        event.preventDefault();
+        openLangMenu();
+      }
+    });
 
-function rotateToAngle(targetAngle, callback) {
-    isAnimating = true;
+    langOptions.forEach(function (option) {
+      option.addEventListener("click", function () {
+        selectLocale(option.getAttribute("data-locale"));
+      });
+    });
 
-    // Normalize angles to find shortest path
-    let start = currentOrbitAngle % 360;
-    let end = targetAngle % 360;
+    langMenu.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowDown") { event.preventDefault(); moveLangFocus(doc.activeElement, 1); }
+      else if (event.key === "ArrowUp") { event.preventDefault(); moveLangFocus(doc.activeElement, -1); }
+      else if (event.key === "Home") { event.preventDefault(); langOptions[0].focus(); }
+      else if (event.key === "End") { event.preventDefault(); langOptions[langOptions.length - 1].focus(); }
+    });
 
-    // Ensure smooth transition across 0/360 boundary
-    let diff = end - start;
-    if (diff > 180) diff -= 360;
-    if (diff < -180) diff += 360;
+    doc.addEventListener("click", function (event) {
+      if (!langOpen()) { return; }
+      if (langMenu.contains(event.target) || langToggle.contains(event.target)) { return; }
+      closeLangMenu(false);
+    });
+  }
 
-    const finalAngle = currentOrbitAngle + diff;
-    const duration = 1000; // ms
-    const startTime = performance.now();
+  /* ------------------------------------------------------- Mobile navigation */
 
-    function animate(time) {
-        const elapsed = time - startTime;
-        const progress = Math.min(elapsed / duration, 1);
+  var toggle = doc.getElementById("nav-toggle");
+  var nav = doc.getElementById("site-nav");
+  var navLinks = nav ? Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]')) : [];
+  var mobileQuery = window.matchMedia("(max-width: 980px)");
 
-        // Ease out cubic
-        const ease = 1 - Math.pow(1 - progress, 3);
+  function panelIsOpen() {
+    return nav && nav.classList.contains("is-open");
+  }
 
-        currentOrbitAngle = start + (diff * ease);
-        updateOrbitVisuals(currentOrbitAngle);
-
-        if (progress < 1) {
-            requestAnimationFrame(animate);
-        } else {
-            isAnimating = false;
-            isPaused = true; // Pause idle rotation while panel is open
-            if (callback) callback();
-        }
+  function closeNav(restoreFocus) {
+    if (!panelIsOpen()) { return; }
+    nav.classList.remove("is-open");
+    body.classList.remove("nav-open");
+    if (toggle) {
+      toggle.setAttribute("aria-expanded", "false");
+      syncNavToggleLabel();
+      if (restoreFocus) { toggle.focus(); }
     }
-    requestAnimationFrame(animate);
-}
+  }
 
-function openPanel(sectionId, data) {
-    const overlay = document.getElementById('panel-overlay');
-    const contentDiv = document.getElementById('panel-content');
-
-    contentDiv.innerHTML = generateContent(sectionId, data);
-    overlay.classList.remove('hidden');
-}
-
-function closePanel() {
-    const overlay = document.getElementById('panel-overlay');
-    overlay.classList.add('hidden');
-
-    // Resume idle rotation
-    isPaused = false;
-}
-
-function generateContent(sectionId, data) {
-    let html = '';
-    switch (sectionId) {
-        case 'about':
-            html += `<h2>About Me</h2>`;
-            html += `<div class="card"><p>I am ${data.researcher_profile.name}, a researcher at ${data.researcher_profile.affiliation}.</p></div>`;
-            html += `<h3>Education</h3>`;
-            data.researcher_profile.education.forEach(edu => {
-                html += `<div class="card">
-                    <strong>${edu.year}</strong> - ${edu.degree}<br>
-                    <span style="color:var(--text-muted)">${edu.institution}</span>
-                </div>`;
-            });
-            break;
-
-        case 'research':
-            html += `<h2>Research Domains</h2>`;
-            for (const [key, domain] of Object.entries(data.research_domains)) {
-                const title = key.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-                html += `<div class="card">
-                    <h3>${title}</h3>
-                    <ul>${domain.themes.map(t => `<li>${t}</li>`).join('')}</ul>
-                </div>`;
-            }
-            html += `<h3>Experience</h3>`;
-            const resExp = data.research_experience.research_assistant_role;
-            if (resExp) {
-                html += `<div class="card">
-                    <p><strong>${resExp.summary}</strong></p>
-                    <p>${resExp.STAR.result}</p>
-                </div>`;
-            }
-            break;
-
-        case 'publications':
-            html += `<h2>Publications</h2>`;
-            data.publications.forEach(pub => {
-                html += `<div class="card">
-                    <h3>${pub.title}</h3>
-                    <p style="color:var(--accent-glow)">${pub.venue}, ${pub.year}</p>
-                    <p><em>${pub.authors.join(', ')}</em></p>
-                    <p style="margin-top:0.5rem">${pub.core_contributions[0]}</p>
-                </div>`;
-            });
-            break;
-
-        case 'teaching':
-            html += `<h2>Teaching & Experience</h2>`;
-            html += `<h3>Academic Positions</h3>`;
-            data.academic_positions.forEach(pos => {
-                html += `<div class="card">
-                    <strong>${pos.role}</strong><br>
-                    ${pos.institution} (${pos.years})
-                </div>`;
-            });
-            html += `<h3>Professional Experience</h3>`;
-            data.professional_experience.forEach(pos => {
-                html += `<div class="card">
-                    <strong>${pos.role}</strong><br>
-                    ${pos.company} (${pos.years})
-                </div>`;
-            });
-            break;
-
-        case 'contact':
-            html += `<h2>Contact</h2>`;
-            const contact = data.researcher_profile.contacts;
-            html += `<div class="card" style="text-align:center">
-                <p>${data.researcher_profile.affiliation}</p>
-                <p>${data.researcher_profile.address}</p>
-                <h3 style="margin:2rem 0">${contact.email_institutional}</h3>
-                <p>Personal: ${contact.email_personal}</p>
-            </div>`;
-            break;
+  function openNav() {
+    if (!nav || !toggle || panelIsOpen()) { return; }
+    closeLangMenu(false);
+    nav.classList.add("is-open");
+    body.classList.add("nav-open");
+    toggle.setAttribute("aria-expanded", "true");
+    syncNavToggleLabel();
+    var first = nav.querySelector("a");
+    if (first) {
+      window.requestAnimationFrame(function () {
+        if (panelIsOpen()) { first.focus(); }
+      });
     }
-    return html;
-}
+  }
+
+  function initNav() {
+    if (!toggle || !nav) { return; }
+
+    toggle.addEventListener("click", function () {
+      if (panelIsOpen()) { closeNav(false); } else { openNav(); }
+    });
+
+    doc.addEventListener("keydown", function (event) {
+      if (event.key !== "Escape") { return; }
+      if (langOpen()) { closeLangMenu(true); return; }
+      if (panelIsOpen()) { closeNav(true); }
+    });
+
+    nav.addEventListener("click", function (event) {
+      var link = event.target.closest ? event.target.closest("a") : null;
+      if (link) { closeNav(false); }
+    });
+
+    doc.addEventListener("click", function (event) {
+      if (!panelIsOpen() || !mobileQuery.matches) { return; }
+      if (nav.contains(event.target) || toggle.contains(event.target)) { return; }
+      closeNav(false);
+    });
+
+    var handleViewportChange = function () { closeNav(false); };
+    if (mobileQuery.addEventListener) {
+      mobileQuery.addEventListener("change", handleViewportChange);
+    } else if (mobileQuery.addListener) {
+      mobileQuery.addListener(handleViewportChange);
+    }
+  }
+
+  function onScroll() {
+    if (header) {
+      header.classList.toggle("is-scrolled", window.scrollY > 8);
+    }
+    updateCurrentLink();
+  }
+
+  /* -------------------------------------------------------------- Scroll spy */
+
+  var tracked = navLinks
+    .map(function (link) {
+      var id = link.getAttribute("href").slice(1);
+      var section = doc.getElementById(id);
+      return section ? { link: link, section: section } : null;
+    })
+    .filter(Boolean);
+
+  var currentLink = null;
+
+  function setCurrent(link) {
+    if (link === currentLink) { return; }
+    if (currentLink) { currentLink.removeAttribute("aria-current"); }
+    currentLink = link;
+    if (currentLink) { currentLink.setAttribute("aria-current", "location"); }
+  }
+
+  function updateCurrentLink() {
+    if (!tracked.length) { return; }
+    if (window.scrollY + window.innerHeight >= doc.documentElement.scrollHeight - 4) {
+      setCurrent(tracked[tracked.length - 1].link);
+      return;
+    }
+    var marker = window.scrollY + (header ? header.offsetHeight : 0) + window.innerHeight * 0.28;
+    var match = tracked[0].link;
+    tracked.forEach(function (item) {
+      if (item.section.offsetTop <= marker) { match = item.link; }
+    });
+    setCurrent(match);
+  }
+
+  /* ------------------------------------------------------------------- Boot */
+
+  var ticking = false;
+  window.addEventListener("scroll", function () {
+    if (ticking) { return; }
+    ticking = true;
+    window.requestAnimationFrame(function () {
+      ticking = false;
+      onScroll();
+    });
+  }, { passive: true });
+
+  window.addEventListener("resize", function () {
+    if (!mobileQuery.matches) { closeNav(false); }
+  });
+
+  var year = doc.getElementById("year");
+  if (year) { year.textContent = String(new Date().getFullYear()); }
+
+  initLang();
+  applyLocale(readStoredLocale() || DEFAULT_LOCALE);
+  initNav();
+  initReveals();
+  onScroll();
+  if (root.classList.contains("no-js")) { root.classList.remove("no-js"); }
+})();

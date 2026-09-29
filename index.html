@@ -1,58 +1,542 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alberto Biscalchin - Researcher</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alberto Biscalchin — Applied AI and Data Science Researcher</title>
+<meta name="description" content="CV of Alberto Biscalchin, Research Assistant at Malmö University: agentic AI systems, travel behaviour analysis, reproducible data pipelines and teaching.">
+<meta name="author" content="Alberto Biscalchin">
+<meta name="theme-color" content="#171310">
+<link rel="canonical" href="https://biscalchin.github.io/">
+<meta property="og:type" content="profile">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Alberto Biscalchin — Applied AI and Data Science Researcher">
+<meta property="og:description" content="Research Assistant at Malmö University. Agentic AI systems, travel behaviour analysis and reproducible computational pipelines.">
+<meta property="og:url" content="https://biscalchin.github.io/">
+<meta property="og:image" content="https://biscalchin.github.io/assets/portrait-1000.jpg">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="assets/portrait-1000.jpg" imagesrcset="assets/portrait-640.jpg 640w, assets/portrait-1000.jpg 1000w" imagesizes="(max-width: 900px) 92vw, 46vw">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
+<script src="i18n.js" defer></script>
+<script src="script.js" defer></script>
 </head>
-
 <body>
-    <div id="universe">
-        <div id="stars"></div>
-        <div id="stars2"></div>
-        <div id="stars3"></div>
+<a class="skip-link" href="#main" data-i18n="nav.skip">Skip to main content</a>
 
-        <div id="scene">
-            <!-- Central Star (Profile) -->
-            <div id="center-star-container">
-                <div id="sun-glow"></div>
-                <div id="profile-star">
-                    <img src="img/prof_pic.png" alt="Alberto Biscalchin" id="profile-img">
-                </div>
-                <div id="profile-info">
-                    <h1 id="name"></h1>
-                    <p id="subtitle"></p>
-                    <div id="uni-logo-container">
-                        <span id="uni-text"></span>
-                    </div>
-                </div>
-            </div>
+<header class="site-header" id="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="#top" data-i18n-aria-label="nav.brandAria" aria-label="Alberto Biscalchin — back to top">
+      <span class="brand__mark" aria-hidden="true">AB</span>
+      <span class="brand__name">Alberto&nbsp;Biscalchin</span>
+    </a>
 
-            <!-- Orbit System (Visual Ring) -->
-            <div id="orbit-system"></div>
+    <nav class="site-nav" id="site-nav" data-i18n-aria-label="nav.aria" aria-label="Main navigation">
+      <ul class="site-nav__list">
+        <li><a href="#profilo" data-i18n="nav.profile">Profile</a></li>
+        <li><a href="#ricerca" data-i18n="nav.research">Research</a></li>
+        <li><a href="#pubblicazioni" data-i18n="nav.publications">Publications</a></li>
+        <li><a href="#percorso" data-i18n="nav.path">Career</a></li>
+        <li><a href="#competenze" data-i18n="nav.skills">Skills</a></li>
+        <li><a href="#contatti" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <a class="button button--solid site-nav__cta" href="assets/Alberto_Biscalchin_CV_General.pdf" download="Alberto_Biscalchin_CV_General.pdf">
+        <span data-i18n="nav.cv">Download CV</span>
+        <span class="button__meta" aria-hidden="true" data-i18n="nav.cvMeta">PDF · 2.9 MB</span>
+      </a>
+    </nav>
 
-            <!-- Planet Layer (3D Billboarded Planets) -->
-            <div id="planet-layer"></div>
-        </div>
+    <div class="site-header__tools">
+      <div class="lang" id="lang">
+        <button class="lang__toggle" type="button" id="lang-toggle" aria-expanded="false" aria-haspopup="listbox" aria-controls="lang-menu" aria-label="Language: English">
+          <img class="lang__flag" src="assets/flags/gb.svg" alt="" width="18" height="12" decoding="async">
+          <span class="lang__name">English</span>
+          <span class="lang__chevron" aria-hidden="true"></span>
+        </button>
+        <ul class="lang__menu" id="lang-menu" role="listbox" data-i18n-aria-label="lang.menuAria" aria-label="Choose a language">
+          <li><button class="lang__option" type="button" role="option" data-locale="en" aria-selected="true"><img class="lang__flag" src="assets/flags/gb.svg" alt="" width="18" height="12" decoding="async"><span>English</span></button></li>
+          <li><button class="lang__option" type="button" role="option" data-locale="it" aria-selected="false"><img class="lang__flag" src="assets/flags/it.svg" alt="" width="18" height="12" decoding="async"><span>Italiano</span></button></li>
+          <li><button class="lang__option" type="button" role="option" data-locale="da" aria-selected="false"><img class="lang__flag" src="assets/flags/da.svg" alt="" width="18" height="12" decoding="async"><span>Dansk</span></button></li>
+          <li><button class="lang__option" type="button" role="option" data-locale="nb" aria-selected="false"><img class="lang__flag" src="assets/flags/nb.svg" alt="" width="18" height="12" decoding="async"><span>Norsk</span></button></li>
+          <li><button class="lang__option" type="button" role="option" data-locale="sv" aria-selected="false"><img class="lang__flag" src="assets/flags/sv.svg" alt="" width="18" height="12" decoding="async"><span>Svenska</span></button></li>
+        </ul>
+      </div>
 
-        <!-- Pop-up Panel Overlay -->
-        <div id="panel-overlay" class="hidden">
-            <div id="content-panel">
-                <button id="close-btn">&times;</button>
-                <div id="panel-content">
-                    <!-- Dynamic Content -->
-                </div>
-            </div>
-        </div>
+      <button class="nav-toggle" type="button" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation menu">
+        <span class="nav-toggle__box" aria-hidden="true"><span class="nav-toggle__bar"></span></span>
+        <span class="nav-toggle__label" aria-hidden="true" data-i18n="nav.toggleLabel">Menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <span id="top" class="anchor-target" aria-hidden="true"></span>
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__content">
+      <p class="hero__eyebrow">
+        <span class="hero__eyebrow-role">Research Assistant</span>
+        <span class="hero__eyebrow-sep" aria-hidden="true">·</span>
+        <span data-i18n="hero.eyebrowOrg">Malmö University</span>
+      </p>
+      <h1 class="hero__title" id="hero-title">Alberto<br><em>Biscalchin</em></h1>
+      <p class="hero__tagline" data-i18n="hero.tagline">Applied AI, Data Science and agentic systems for the analysis of human behaviour.</p>
+      <p class="hero__lead" data-i18n="hero.lead">I build agentic AI systems and reproducible computational pipelines to study travel behaviour and urban data. I combine applied machine learning and statistical evaluation with backend prototyping, decision-support systems and teaching experience.</p>
+
+      <ul class="hero__meta">
+        <li><span class="hero__meta-label" data-i18n="hero.metaLocationLabel">Location</span> <span data-i18n="geo.malmoSweden">Malmö, Sweden</span></li>
+        <li><span class="hero__meta-label" data-i18n="hero.metaEmailLabel">Email</span> <a href="mailto:alberto.biscalchin@gmail.com">alberto.biscalchin@gmail.com</a></li>
+        <li><span class="hero__meta-label" data-i18n="hero.metaOrcidLabel">ORCID</span> <a href="https://orcid.org/0009-0005-1737-6754" rel="me noopener">0009-0005-1737-6754</a></li>
+      </ul>
+
+      <p class="hero__actions">
+        <a class="button button--solid" href="assets/Alberto_Biscalchin_CV_General.pdf" download="Alberto_Biscalchin_CV_General.pdf" data-i18n="hero.ctaCv">Download the full CV</a>
+        <a class="button button--ghost" href="#contatti" data-i18n="hero.ctaContact">Contact</a>
+      </p>
+
+      <p class="scroll-cue" aria-hidden="true"><span class="scroll-cue__line"></span> <span data-i18n="hero.scroll">Scroll</span></p>
     </div>
 
-    <script src="script.js"></script>
-</body>
+    <figure class="hero__portrait">
+      <img class="hero__portrait-img"
+           src="assets/portrait-1000.jpg"
+           srcset="assets/portrait-640.jpg 640w, assets/portrait-1000.jpg 1000w"
+           sizes="(max-width: 900px) 92vw, 46vw"
+           width="1000" height="1250"
+           alt="Portrait of Alberto Biscalchin in a burgundy suit against a charcoal background"
+           data-i18n-alt="hero.portraitAlt"
+           fetchpriority="high" decoding="async">
+      <figcaption class="hero__caption">Alberto Biscalchin</figcaption>
+    </figure>
+  </section>
 
+  <section class="section section--profilo" id="profilo" aria-labelledby="profilo-title">
+    <div class="container">
+      <header class="section-head" data-reveal>
+        <p class="section-num" aria-hidden="true">01</p>
+        <h2 class="section-title" id="profilo-title" data-i18n="profile.title">Profile</h2>
+      </header>
+      <div class="profilo">
+        <div class="profilo__main" data-reveal>
+          <p class="lead" data-i18n="profile.lead">Research Assistant at Malmö University, with an MSc in Computer Science specialising in Applied Data Science and a BSc in Computer Science and Automation Engineering. I design agentic AI systems, analyse data on human behaviour and develop reproducible computational pipelines.</p>
+          <p data-i18n="profile.p2">I combine applied machine learning and statistical evaluation with backend prototyping, decision-support systems and teaching experience.</p>
+          <h3 class="subhead" data-i18n="profile.subhead">Research interests</h3>
+          <p data-i18n="profile.interests">Trustworthy and reproducible AI, human–AI collaboration, computational modelling of behaviour and visual analytics. I am interested in extending this work towards multimodal behavioural sensing, eye tracking and reinforcement learning, including how people adapt strategies, attention and trust when interacting with autonomous AI systems.</p>
+        </div>
+        <aside class="profilo__facts" data-reveal data-i18n-aria-label="profile.factsAria" aria-label="Summary">
+          <dl class="facts">
+            <div class="facts__row"><dt data-i18n="profile.factRoleLabel">Current role</dt><dd>Research Assistant, Malmö&nbsp;University</dd></div>
+            <div class="facts__row"><dt data-i18n="profile.factAffLabel">Affiliation</dt><dd data-i18n="profile.factAffValue">Department of Technology and Society</dd></div>
+            <div class="facts__row"><dt data-i18n="profile.factEduLabel">Education</dt><dd data-i18n="profile.factEduValue">MSc Computer Science — Applied Data Science</dd></div>
+            <div class="facts__row"><dt data-i18n="profile.factLangLabel">Languages</dt><dd data-i18n="profile.factLangValue">Italian, English (C1), Spanish (B2)</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ricerca" id="ricerca" aria-labelledby="ricerca-title">
+    <div class="container">
+      <header class="section-head" data-reveal>
+        <p class="section-num" aria-hidden="true">02</p>
+        <h2 class="section-title" id="ricerca-title" data-i18n="research.title">Research</h2>
+        <p class="section-intro" data-i18n="research.intro">Modular agentic systems, statistical analysis and reproducible pipelines for behavioural and urban data.</p>
+      </header>
+
+      <article class="entry" data-reveal>
+        <header class="entry__head">
+          <h3 class="entry__title">Research Assistant</h3>
+          <p class="entry__meta"><span class="entry__org" data-i18n="research.roleOrg">Malmö University, Department of Technology and Society</span> <span class="entry__sep" aria-hidden="true">·</span> <span data-i18n="research.roleGeo">Sweden</span> <span class="entry__sep" aria-hidden="true">·</span> <span data-i18n="research.rolePeriod">2024 — present</span></p>
+        </header>
+        <ul class="bullet-list">
+          <li data-i18n="research.b1">Research on AI-assisted analysis of travel behaviour, mobility choices and urban planning data, including large-scale surveys and demographic differences.</li>
+          <li data-i18n="research.b2">Development of Python pipelines for data cleaning, feature selection, statistical analysis, model-supported reasoning, retrieval and report generation.</li>
+          <li data-i18n="research.b3">Design of modular agentic systems with specialised components for preprocessing, analysis, classification, validation and reporting.</li>
+          <li data-i18n="research.b4">Use of structured interaction traces, shared workflow states, validation checkpoints and intermediate outputs to support interpretability, auditing and reproducibility.</li>
+          <li data-i18n="research.b5">Contribution to study design, expert and participant protocols, rating instruments, statistical validation and transparent reporting of limitations.</li>
+          <li data-i18n="research.b6">Development of retrieval-augmented systems for urban planning and mobility decision support; co-supervision of a master's thesis on multimodal RAG for travel behaviour analysis.</li>
+        </ul>
+      </article>
+
+      <article class="entry entry--thesis" data-reveal>
+        <header class="entry__head">
+          <p class="entry__label" data-i18n="research.thesisLabel">Master's thesis</p>
+          <h3 class="entry__title">Leveraging LLMs for Understanding Travel Behaviour</h3>
+          <p class="entry__subtitle" data-i18n="research.thesisSubtitle">A case study on older adults in Malmö</p>
+          <p class="entry__meta"><span class="entry__org" data-i18n="research.thesisOrg">Malmö University</span> <span class="entry__sep" aria-hidden="true">·</span> 2025 <span class="entry__sep" aria-hidden="true">·</span> <span data-i18n="research.thesisGrade">grade A</span></p>
+        </header>
+        <ul class="bullet-list">
+          <li data-i18n="research.tb1">Design and implementation of a multi-agent system based on foundation models for large-scale travel behaviour analysis, with structured JSON handovers between specialised agents.</li>
+          <li data-i18n="research.tb2">Evaluation of the system in a blind study with six domain experts, compared with a commercial single-agent system and a baseline written by human experts.</li>
+          <li data-i18n="research.tb3">Analysis of correctness, reasoning, relevance and clarity ratings using one-way ANOVA and Tukey HSD post-hoc tests.</li>
+          <li data-i18n="research.tb4">Grade A, Thesis of the Year award and Wollmarska fonden scholarship 2026; the work was developed into a peer-reviewed paper.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--pubblicazioni" id="pubblicazioni" aria-labelledby="pubblicazioni-title">
+    <div class="container">
+      <header class="section-head" data-reveal>
+        <p class="section-num" aria-hidden="true">03</p>
+        <h2 class="section-title" id="pubblicazioni-title" data-i18n="publications.title">Publications</h2>
+        <p class="section-intro" data-i18n="publications.intro">Two peer-reviewed contributions and three manuscripts spanning applied AI, urban mobility and learning.</p>
+      </header>
+
+      <h3 class="group-title" data-reveal data-i18n="publications.groupConf">Peer-reviewed conference proceedings</h3>
+      <ol class="pub-list">
+        <li class="pub" data-reveal>
+          <p class="pub__meta"><span class="pub__venue">IEEE SoftCOM</span> <span class="entry__sep" aria-hidden="true">·</span> <span data-i18n="publications.citySplit">Split, Croatia</span> <span class="entry__sep" aria-hidden="true">·</span> 2025</p>
+          <h4 class="pub__title">Designing Education for the AI Era: Principles for Integrating LLMs in Pedagogy</h4>
+          <p class="pub__authors">Biscalchin, A., Sarkheyli-Hägele, A., Eriksson, J., Vogel, B.</p>
+          <p class="pub__links"><a class="link-arrow" href="https://doi.org/10.23919/SoftCOM66362.2025.11197458" rel="noopener">doi.org/10.23919/SoftCOM66362.2025.11197458</a></p>
+        </li>
+        <li class="pub" data-reveal>
+          <p class="pub__meta"><span class="pub__venue">FLLM</span> <span class="entry__sep" aria-hidden="true">·</span> <span data-i18n="publications.cityVienna">Vienna, Austria</span> <span class="entry__sep" aria-hidden="true">·</span> 2025</p>
+          <h4 class="pub__title">Multi-Agent Foundation Models for Urban Mobility: The Malmö Elderly Case</h4>
+          <p class="pub__authors">Biscalchin, A., Sarkheyli, E., Sarkheyli-Hägele, A.</p>
+          <p class="pub__links"><a class="link-arrow" href="https://doi.org/10.1109/FLLM67465.2025.11391006" rel="noopener">doi.org/10.1109/FLLM67465.2025.11391006</a></p>
+        </li>
+      </ol>
+
+      <h3 class="group-title" data-reveal data-i18n="publications.groupPreprints">Preprints and manuscripts</h3>
+      <ol class="pub-list">
+        <li class="pub pub--muted" data-reveal>
+          <p class="pub__meta"><span class="pub__venue" data-i18n="publications.preprint">Preprint</span> <span class="entry__sep" aria-hidden="true">·</span> 2026</p>
+          <h4 class="pub__title">Large Language Models in Travel Behaviour Research: A Systematic Mapping of Applications, Data, and Emerging Practices</h4>
+          <p class="pub__authors">Biscalchin, A., Sarkheyli-Hägele, A., Sarkheyli, E., Lord, J., Gołdyka, K.</p>
+        </li>
+        <li class="pub pub--muted" data-reveal>
+          <p class="pub__meta"><span class="pub__venue" data-i18n="publications.venuePrepBjet">In preparation — British Journal of Educational Technology</span> <span class="entry__sep" aria-hidden="true">·</span> 2026</p>
+          <h4 class="pub__title">The Temporal Paradox of AI-Assisted Learning</h4>
+          <p class="pub__authors">Biscalchin, A., Sarkheyli-Hägele, A., Eriksson, J., Vogel, B., Björklund Boistrup, L.</p>
+        </li>
+        <li class="pub pub--muted" data-reveal>
+          <p class="pub__meta"><span class="pub__venue" data-i18n="publications.venuePrepIs">In preparation — Information Systems</span> <span class="entry__sep" aria-hidden="true">·</span> 2026</p>
+          <h4 class="pub__title">A Reproducible Pipeline to Discover Serious Games</h4>
+          <p class="pub__authors">Biscalchin, A., Spalazzese, R., et al.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--percorso" id="percorso" aria-labelledby="percorso-title">
+    <div class="container">
+      <header class="section-head" data-reveal>
+        <p class="section-num" aria-hidden="true">04</p>
+        <h2 class="section-title" id="percorso-title" data-i18n="path.title">Teaching and professional experience</h2>
+      </header>
+
+      <ol class="timeline">
+        <li class="timeline__item" data-reveal>
+          <p class="timeline__years">2024 — present</p>
+          <div class="timeline__body">
+            <h3 class="timeline__role">Research Assistant</h3>
+            <p class="timeline__org" data-i18n="path.org1">Malmö University, Department of Technology and Society — Sweden</p>
+            <p class="timeline__note" data-i18n="path.note1">Research on AI and mobility, data pipelines and agentic systems; co-supervision of a master's thesis.</p>
+          </div>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <p class="timeline__years">2024 — 2025</p>
+          <div class="timeline__body">
+            <h3 class="timeline__role">Teaching Assistant</h3>
+            <p class="timeline__org" data-i18n="path.org2">Malmö University — Sweden</p>
+            <p class="timeline__note" data-i18n="path.note2">Support for undergraduate teaching and student learning activities.</p>
+          </div>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <p class="timeline__years">2022 — 2023</p>
+          <div class="timeline__body">
+            <h3 class="timeline__role" data-i18n="path.roleTeacher">Secondary school teacher</h3>
+            <p class="timeline__org" data-i18n="path.org3">Istituto Juvarra — Italy</p>
+            <p class="timeline__note">Mathematics, Physics and Computer Science; more than 500 teaching hours.</p>
+          </div>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <p class="timeline__years">2021 — 2023</p>
+          <div class="timeline__body">
+            <h3 class="timeline__role">Head Teacher</h3>
+            <p class="timeline__org" data-i18n="path.org4">Centro Studi Omnibus — Italy</p>
+            <p class="timeline__note">Mathematics, Physics and Computer Science.</p>
+          </div>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <p class="timeline__years">2018 — 2019</p>
+          <div class="timeline__body">
+            <h3 class="timeline__role">Full-stack Developer</h3>
+            <p class="timeline__org" data-i18n="path.org5">GIGA srls — Italy</p>
+          </div>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <p class="timeline__years">2014 — 2015</p>
+          <div class="timeline__body">
+            <h3 class="timeline__role">Head of IT Department</h3>
+            <p class="timeline__org" data-i18n="path.org6">Mondadori Mega Store — Italy</p>
+          </div>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <p class="timeline__years">2012 — 2018</p>
+          <div class="timeline__body">
+            <h3 class="timeline__role" data-i18n="path.roleFreelance">Freelance photographer and videomaker</h3>
+            <p class="timeline__org" data-i18n="geo.italy">Italy</p>
+          </div>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <p class="timeline__years">2011 — 2012</p>
+          <div class="timeline__body">
+            <h3 class="timeline__role" data-i18n="path.roleCustoms">Customs consultant</h3>
+            <p class="timeline__org" data-i18n="path.org8">FCA — Italy</p>
+          </div>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <p class="timeline__years">2011</p>
+          <div class="timeline__body">
+            <h3 class="timeline__role" data-i18n="path.roleQc">Industrial quality control</h3>
+            <p class="timeline__org" data-i18n="path.org9">Con.Top S.R.L. — Italy</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--formazione" id="formazione" aria-labelledby="formazione-title">
+    <div class="container">
+      <header class="section-head" data-reveal>
+        <p class="section-num" aria-hidden="true">05</p>
+        <h2 class="section-title" id="formazione-title" data-i18n="edu.title">Education</h2>
+      </header>
+
+      <ol class="edu-list">
+        <li class="edu" data-reveal>
+          <p class="edu__years">2025</p>
+          <div class="edu__body">
+            <h3 class="edu__degree" data-i18n="edu.d1Degree">MSc in Computer Science — Applied Data Science</h3>
+            <p class="edu__org"><span data-i18n="edu.d1Org">Malmö University — Sweden</span> <span class="entry__sep" aria-hidden="true">·</span> <span data-i18n="edu.credits120">120 credits</span></p>
+            <p class="edu__note" data-i18n="edu.d1Note">Master's thesis with grade A. Relevant courses: Advanced Machine Learning (A); Big Data Analytics on Cloud Computing Infrastructures (B); Statistical Methods for Data Science (B); Research Methods of Computer Science and Fundamental Computational Theory (B).</p>
+          </div>
+        </li>
+        <li class="edu" data-reveal>
+          <p class="edu__years">2025 — 2026</p>
+          <div class="edu__body">
+            <h3 class="edu__degree" data-i18n="edu.d2Degree">Further second-cycle courses in Computer Science</h3>
+            <p class="edu__org"><span data-i18n="edu.d1Org">Malmö University — Sweden</span> <span class="entry__sep" aria-hidden="true">·</span> 30 ECTS</p>
+            <p class="edu__note" data-i18n="edu.d2Note">IoT Prototyping and User Experience (15 ECTS, A); Introduction to IoT (15 ECTS, B).</p>
+          </div>
+        </li>
+        <li class="edu" data-reveal>
+          <p class="edu__years">2022</p>
+          <div class="edu__body">
+            <h3 class="edu__degree" data-i18n="edu.d3Degree">BSc in Computer Science and Automation Engineering</h3>
+            <p class="edu__org"><span data-i18n="edu.d3Org">Università eCampus — Italy</span> <span class="entry__sep" aria-hidden="true">·</span> 180 ECTS</p>
+            <p class="edu__note" data-i18n="edu.d3Note">Bachelor's degree, Department of Computing and Control Systems.</p>
+          </div>
+        </li>
+        <li class="edu" data-reveal>
+          <p class="edu__years">2019</p>
+          <div class="edu__body">
+            <h3 class="edu__degree" data-i18n="edu.d4Degree">Executive Master in Digital Video Editing</h3>
+            <p class="edu__org" data-i18n="edu.d4Org">MyWeb School, Naples — Italy</p>
+          </div>
+        </li>
+        <li class="edu" data-reveal>
+          <p class="edu__years">2010</p>
+          <div class="edu__body">
+            <h3 class="edu__degree" data-i18n="edu.d5Degree">High school diploma in Applied Sciences</h3>
+            <p class="edu__org" data-i18n="edu.d5Org">Istituto Giulio Natta, Rivoli — Italy</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--competenze" id="competenze" aria-labelledby="competenze-title">
+    <div class="container">
+      <header class="section-head" data-reveal>
+        <p class="section-num" aria-hidden="true">06</p>
+        <h2 class="section-title" id="competenze-title" data-i18n="skills.title">Technical and methodological skills</h2>
+      </header>
+
+      <dl class="skills">
+        <div class="skill" data-reveal>
+          <dt class="skill__name" data-i18n="skills.n1">Programming and ML</dt>
+          <dd class="skill__body">
+            <ul class="tag-list">
+              <li>Python</li><li>PyTorch</li><li>Transformers</li><li>Pandas</li><li>C/C++</li><li>MATLAB</li>
+            </ul>
+            <p class="skill__note" data-i18n="skills.n1Note">Classification, feature engineering, benchmarking, model evaluation and error analysis.</p>
+          </dd>
+        </div>
+        <div class="skill" data-reveal>
+          <dt class="skill__name" data-i18n="skills.n2">Agentic AI</dt>
+          <dd class="skill__body">
+            <ul class="tag-list">
+              <li data-i18n="skills.aiMultiagent">Multi-agent architectures</li><li>Foundation models</li><li data-i18n="skills.aiPrompt">Prompt-controlled agents</li><li>RAG</li><li>Structured tool use</li><li data-i18n="skills.aiState">Intermediate state validation</li><li>OpenAI API</li><li>LangChain</li><li>CrewAI</li>
+            </ul>
+          </dd>
+        </div>
+        <div class="skill" data-reveal>
+          <dt class="skill__name" data-i18n="skills.n3">Data and backend</dt>
+          <dd class="skill__body">
+            <ul class="tag-list">
+              <li>SQL</li><li>PostgreSQL</li><li>FastAPI</li><li>Qdrant</li><li data-i18n="skills.dataCsv">CSV/JSON processing</li><li data-i18n="skills.dataSchema">Schema-aware pipelines</li><li>Docker</li><li>Git</li><li>GitHub</li><li>CI/CD</li>
+            </ul>
+          </dd>
+        </div>
+        <div class="skill" data-reveal>
+          <dt class="skill__name" data-i18n="skills.n4">Statistics and evaluation</dt>
+          <dd class="skill__body">
+            <ul class="tag-list">
+              <li data-i18n="skills.statsDescriptive">Descriptive statistics</li><li data-i18n="skills.statsAnova">One-way ANOVA</li><li>Tukey HSD</li><li data-i18n="skills.statsAgreement">Inter-rater agreement</li><li data-i18n="skills.statsControlled">Controlled comparisons</li><li data-i18n="skills.statsExpert">Expert evaluation</li><li data-i18n="skills.statsReporting">Reproducible reporting</li>
+            </ul>
+          </dd>
+        </div>
+        <div class="skill" data-reveal>
+          <dt class="skill__name" data-i18n="skills.n5">Human-centred methods and visualisation</dt>
+          <dd class="skill__body">
+            <ul class="tag-list">
+              <li data-i18n="skills.hcParticipant">Participant studies</li><li data-i18n="skills.hcLikert">Likert-scale instruments</li><li>Human-in-the-loop</li><li data-i18n="skills.hcEthics">Research ethics</li><li>QGIS</li><li>Matplotlib</li><li data-i18n="skills.hcSpatial">Spatial analysis</li><li data-i18n="skills.hcMultimodal">Multimodal retrieval</li>
+            </ul>
+          </dd>
+        </div>
+        <div class="skill" data-reveal>
+          <dt class="skill__name" data-i18n="skills.n6">Tools</dt>
+          <dd class="skill__body">
+            <ul class="tag-list">
+              <li>AutoCAD</li><li>Inventor</li><li>Adobe Suite</li><li>Reaper</li>
+            </ul>
+          </dd>
+        </div>
+        <div class="skill" data-reveal>
+          <dt class="skill__name" data-i18n="skills.n7">Languages</dt>
+          <dd class="skill__body">
+            <ul class="tag-list">
+              <li data-i18n="skills.langIt">Italian — native</li><li data-i18n="skills.langEn">English — C1, IELTS Academic 7.0</li><li data-i18n="skills.langEs">Spanish — B2</li>
+            </ul>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section section--progetti" id="progetti" aria-labelledby="progetti-title">
+    <div class="container">
+      <header class="section-head" data-reveal>
+        <p class="section-num" aria-hidden="true">07</p>
+        <h2 class="section-title" id="progetti-title" data-i18n="projects.title">Selected projects</h2>
+      </header>
+
+      <ul class="project-list">
+        <li class="project" data-reveal>
+          <h3 class="project__title" data-i18n="projects.p1Title">Multimodal RAG for travel behaviour analysis</h3>
+          <p class="project__text" data-i18n="projects.p1Text">Contribution to a hybrid retrieval system combining layout-aware text processing with region-based visual retrieval. Evaluation used a benchmark of 487 questions covering correctness, faithfulness, latency, token efficiency and inter-rater agreement.</p>
+        </li>
+        <li class="project" data-reveal>
+          <h3 class="project__title" data-i18n="projects.p2Title">MAU Advisor</h3>
+          <p class="project__text" data-i18n="projects.p2Text">Retrieval-augmented platform for urban planning support: structured knowledge retrieval, backend services, domain modelling and user-oriented reporting.</p>
+        </li>
+        <li class="project" data-reveal>
+          <h3 class="project__title" data-i18n="projects.p3Title">Pilot study on AI-assisted learning</h3>
+          <p class="project__text" data-i18n="projects.p3Text">Design and conduct of a study comparing traditional reading with AI-assisted study via NotebookLM, with timed tasks, open questions and analysis of answers and learning strategies.</p>
+        </li>
+        <li class="project" data-reveal>
+          <h3 class="project__title" data-i18n="projects.p4Title">Evidence synthesis</h3>
+          <p class="project__text" data-i18n="projects.p4Text">PRISMA-guided screening and data extraction for a systematic mapping of LLMs in travel behaviour research. Contribution to a longitudinal review on AI-assisted learning: regulation, strategy development, dependence and long-term learning trajectories.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--riconoscimenti" id="riconoscimenti" aria-labelledby="riconoscimenti-title">
+    <div class="container">
+      <header class="section-head" data-reveal>
+        <p class="section-num" aria-hidden="true">08</p>
+        <h2 class="section-title" id="riconoscimenti-title" data-i18n="awards.title">Awards and academic service</h2>
+      </header>
+
+      <div class="awards">
+        <ul class="awards__list" data-reveal>
+          <li class="award">
+            <p class="award__year">2026</p>
+            <p class="award__text" data-i18n-html="awards.a1"><strong>Thesis of the Year</strong>, Malmö University</p>
+          </li>
+          <li class="award">
+            <p class="award__year">2026</p>
+            <p class="award__text" data-i18n-html="awards.a2">Scholarship <strong>Wollmarska fonden</strong></p>
+          </li>
+          <li class="award">
+            <p class="award__year">—</p>
+            <p class="award__text" data-i18n-html="awards.a3">Reviewer for <strong>Mobile Networks and Applications</strong></p>
+          </li>
+        </ul>
+        <div class="awards__aside" data-reveal>
+          <h3 class="subhead" data-i18n="awards.subDissem">Dissemination</h3>
+          <p data-i18n="awards.dissemText">Conference presentations and research dissemination activities in applied AI, mobility analysis and AI-assisted learning.</p>
+          <h3 class="subhead" data-i18n="awards.subRefs">References</h3>
+          <p data-i18n="awards.refsText">Academic references available on request.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--contatti" id="contatti" aria-labelledby="contatti-title">
+    <div class="container">
+      <header class="section-head" data-reveal>
+        <p class="section-num" aria-hidden="true">09</p>
+        <h2 class="section-title" id="contatti-title" data-i18n="contact.title">Contact</h2>
+      </header>
+
+      <div class="contact">
+        <div class="contact__primary" data-reveal>
+          <p class="contact__label" data-i18n="hero.metaEmailLabel">Email</p>
+          <p class="contact__mail"><a href="mailto:alberto.biscalchin@gmail.com">alberto.biscalchin@gmail.com</a></p>
+          <p class="contact__alt"><span data-i18n="contact.instLabel">Institutional:</span> <a href="mailto:alberto.biscalchin@mau.se">alberto.biscalchin@mau.se</a></p>
+          <ul class="contact__links">
+            <li><a class="link-arrow" href="https://orcid.org/0009-0005-1737-6754" rel="me noopener">ORCID 0009-0005-1737-6754</a></li>
+            <li><a class="link-arrow" href="https://doi.org/10.23919/SoftCOM66362.2025.11197458" rel="noopener" data-i18n="contact.linkSoftcom">Publication IEEE SoftCOM 2025</a></li>
+            <li><a class="link-arrow" href="https://doi.org/10.1109/FLLM67465.2025.11391006" rel="noopener" data-i18n="contact.linkFllm">Publication FLLM 2025</a></li>
+          </ul>
+        </div>
+        <div class="contact__aside" data-reveal>
+          <p class="contact__location" data-i18n="geo.malmoSweden">Malmö, Sweden</p>
+          <a class="button button--solid button--wide" href="assets/Alberto_Biscalchin_CV_General.pdf" download="Alberto_Biscalchin_CV_General.pdf">
+            <span data-i18n="contact.cv">Download the original CV</span>
+            <span class="button__meta" aria-hidden="true" data-i18n="contact.cvMeta">PDF · 2.9 MB</span>
+          </a>
+          <p class="contact__note" data-i18n="contact.note">Full CV in PDF, with publications, teaching and references.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <p class="site-footer__name">Alberto Biscalchin</p>
+    <p class="site-footer__meta"><span data-i18n="footer.updated">CV updated in September 2026</span> <span class="entry__sep" aria-hidden="true">·</span> <span id="year">2026</span></p>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Alberto Biscalchin",
+  "jobTitle": "Research Assistant",
+  "email": "mailto:alberto.biscalchin@gmail.com",
+  "url": "https://biscalchin.github.io/",
+  "sameAs": ["https://orcid.org/0009-0005-1737-6754"],
+  "affiliation": {
+    "@type": "Organization",
+    "name": "Malmö University",
+    "department": "Department of Technology and Society"
+  },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Malmö University" },
+    { "@type": "CollegeOrUniversity", "name": "Università eCampus" }
+  ],
+  "knowsLanguage": ["it", "en", "es"]
+}
+</script>
+</body>
 </html>
