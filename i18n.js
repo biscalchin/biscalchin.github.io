@@ -1,10 +1,12 @@
 /* ==========================================================================
    Alberto Biscalchin — CV site: translation dictionary.
 
-   English ("en") is the static HTML baseline and the default for every first
-   visit, regardless of the browser locale. The other languages are applied
-   client-side as progressive enhancement; with JavaScript disabled the English
-   content in index.html stays fully readable.
+   English ("en") is the static HTML baseline and the no-JavaScript fallback.
+   On a first visit JavaScript picks the initial language from the browser's
+   own preferences (navigator.languages, with navigator.language as fallback)
+   when a supported language matches, otherwise English. The detected locale is
+   never stored; only an explicit choice is remembered. With JavaScript
+   disabled the English content in index.html stays fully readable.
 
    How to edit the languages
    -------------------------

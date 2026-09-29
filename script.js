@@ -82,7 +82,8 @@
     return { endonym: "English", htmlLang: "en", flag: "gb" };
   }
 
-  /* Remember only an explicit choice; never guess from the browser locale. */
+  /* Persist only an explicit choice; a browser-detected default is never
+     written to storage, so a changed system language takes effect next visit. */
   function readStoredLocale() {
     try {
       var stored = window.localStorage.getItem(i18n.storageKey);
@@ -98,6 +99,41 @@
     } catch (error) {
       /* localStorage unavailable (private mode, blocked storage): ignore. */
     }
+  }
+
+  /* Initial default from the browser: the first supported match in
+     navigator.languages (falling back to navigator.language), else null.
+     Case and separators are normalised; Norwegian no/nn map to nb. */
+  var BROWSER_LOCALE_ALIASES = { no: "nb", nn: "nb" };
+
+  function normalizePrimaryTag(value) {
+    if (typeof value !== "string") { return null; }
+    var tag = value.trim().toLowerCase().replace(/_/g, "-");
+    if (!tag) { return null; }
+    var primary = tag.split("-")[0];
+    return /^[a-z]{2,3}$/.test(primary) ? primary : null;
+  }
+
+  function browserLocaleCandidate(value) {
+    var primary = normalizePrimaryTag(value);
+    if (!primary) { return null; }
+    if (isSupportedLocale(primary)) { return primary; }
+    var alias = BROWSER_LOCALE_ALIASES[primary];
+    return alias && isSupportedLocale(alias) ? alias : null;
+  }
+
+  function detectBrowserLocale() {
+    var nav = window.navigator || {};
+    var requested = [];
+    if (nav.languages && typeof nav.languages.length === "number" && nav.languages.length) {
+      requested = Array.prototype.slice.call(nav.languages);
+    }
+    if (!requested.length && typeof nav.language === "string") { requested = [nav.language]; }
+    for (var i = 0; i < requested.length; i++) {
+      var candidate = browserLocaleCandidate(requested[i]);
+      if (candidate) { return candidate; }
+    }
+    return null;
   }
 
   function setMeta(attr, name, value) {
@@ -366,7 +402,7 @@
   if (year) { year.textContent = String(new Date().getFullYear()); }
 
   initLang();
-  applyLocale(readStoredLocale() || DEFAULT_LOCALE);
+  applyLocale(readStoredLocale() || detectBrowserLocale() || DEFAULT_LOCALE);
   initNav();
   initReveals();
   onScroll();

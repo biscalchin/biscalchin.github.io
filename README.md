@@ -5,9 +5,13 @@ esterna) pubblicabile direttamente su GitHub Pages.
 
 ## Lingue
 
-- L'**inglese è la lingua predefinita**. `index.html` contiene il testo inglese
-  statico ed è ciò che si vede alla prima visita, qualunque sia la lingua del
-  browser. Con JavaScript disattivato il CV inglese resta leggibile e
+- **La lingua iniziale viene rilevata dal browser**: alla prima visita il sito
+  sceglie la prima lingua supportata tra quelle preferite dal visitatore
+  (`navigator.languages`, con `navigator.language` come riserva); se nessuna è
+  supportata resta l'inglese. La corrispondenza normalizza maiuscole e
+  separatori e confronta il tag primario (`it-IT` → `it`); `no`, `nb` e `nn`
+  ricadono sul norvegese bokmål (`nb`). `index.html` contiene il testo inglese
+  statico, quindi con JavaScript disattivato il CV inglese resta leggibile e
   navigabile.
 - Le lingue supportate sono inglese (`en`), italiano (`it`), danese (`da`),
   norvegese bokmål (`nb`) e svedese (`sv`).
@@ -15,11 +19,13 @@ esterna) pubblicabile direttamente su GitHub Pages.
   `locales` e stringhe in `strings`. `script.js` applica la lingua scelta
   aggiornando testo, attributo `lang`, `title`, meta description, `og:*` ed
   etichette accessibili (`aria-label`, `alt`).
-- Una scelta esplicita dell'utente viene ricordata in `localStorage` con la
-  chiave `ab-site-locale`. La lingua del browser non viene mai usata per
-  indovinare: si parte sempre dall'inglese. Se `localStorage` non è
-  disponibile (modalità privata, storage bloccato) il sito funziona comunque e
-  la scelta vale solo per la sessione corrente.
+- Solo una **scelta esplicita** dell'utente viene ricordata in `localStorage`
+  con la chiave `ab-site-locale`; viene applicata con precedenza su quella
+  rilevata dal browser. La lingua rilevata automaticamente non viene mai
+  salvata: se le preferenze del sistema cambiano, la visita successiva usa la
+  nuova lingua. Se `localStorage` non è disponibile (modalità privata, storage
+  bloccato) o contiene un valore non valido, il sito funziona comunque e usa il
+  rilevamento dal browser.
 - Il selettore in header usa bandiere SVG locali in `assets/flags/`
   (`gb`, `it`, `da`, `nb`, `sv`): nessuna emoji, nessun servizio esterno,
   nessuna dipendenza di rete.
@@ -106,7 +112,8 @@ un'altra installazione.
   `node work/checks/languages-check.cjs`
   L'URL di base si imposta con la variabile d'ambiente `SITE_URL`
   (default `http://127.0.0.1:8765/`).
-  Copre: prima visita in inglese anche con browser `it-IT`; applicazione di
+  Copre: prima visita con browser `it-IT` in italiano e fallback inglese senza
+  corrispondenza (vedi anche `work/checks/auto-language-check.cjs`); applicazione di
   tutte e cinque le lingue a intestazioni, corpo, navigazione, `lang`, `title`,
   meta e etichette accessibili; persistenza della scelta al reload; storage non
   disponibile; uso da tastiera del menu lingua; funzionamento di menu, reveal e
